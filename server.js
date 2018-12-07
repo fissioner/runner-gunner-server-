@@ -156,7 +156,7 @@ function makeElements() {
     })
 }
 
-var loop = setInterval(makeElements, 90);
+var loop = setInterval(makeElements, 50);
 
 
 io.on('connection', function (socket) {
