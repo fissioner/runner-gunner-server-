@@ -151,7 +151,7 @@ function makeElements() {
 
         if (lives < 1 || players.length === 0) {
             io.emit('gameOver');
-            clearInterval(loop);
+            restart();
         }
     })
 }
