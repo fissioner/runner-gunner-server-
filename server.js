@@ -3,7 +3,6 @@ app = express(),
     http = require('http').Server(app),
     io = require('socket.io')(http),
     UsernameGenerator = require('username-generator'),
-    engine = require('./engine'),
     emojis = require('emojis-list');
 let users = [];
 let messages = [];
