@@ -3,9 +3,25 @@ app = express(),
     http = require('http').Server(app),
     io = require('socket.io')(http),
     UsernameGenerator = require('username-generator'),
-    emojis = require('emojis-list');
-let users = [];
-let messages = [];
+    emojis = require('emojis-list'),
+    users = [],
+    messages = [],
+    score = 0,
+    controls = {},
+    platforms = [],
+    players = [],
+    bullets = [],
+    enemies = [],
+    lives = 1,
+    random = function (min, max) {
+        let num = Math.floor(Math.random() * Math.floor(max));
+        return num > min ? num : num + min;
+    },
+    colors = ['black', 'brown', 'white'],
+    c = {
+        height: 500,
+        width: 750
+    };
 
 function element(x, y, width, height, color, type) {
     this.x = x;
@@ -21,22 +37,6 @@ function element(x, y, width, height, color, type) {
     this.friction = 0.9;
     this.emoji = emojis[random(0, 2440)];
 }
-let score = 0;
-let controls = {};
-let platforms = [],
-    players = [],
-    bullets = [],
-    enemies = [],
-    lives = 1,
-    random = function (min, max) {
-        let num = Math.floor(Math.random() * Math.floor(max));
-        return num > min ? num : num + min;
-    },
-    colors = ['black', 'brown', 'white'],
-    c = {
-        height: 500,
-        width: 750
-    };
 
 function restart() {
 
