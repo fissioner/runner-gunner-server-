@@ -11,7 +11,7 @@ let users = [],
     players = [],
     bullets = [],
     enemies = [],
-    lives,
+    lives = 2,
     gravity = 0.5,
     random = function (min, max) {
         let num = Math.floor(Math.random() * Math.floor(max));
@@ -44,7 +44,7 @@ function element(x, y, width, height, color, type, name, emoji) {
 
 function startGame() {
     loop = setInterval(makeElements, 20);
-    lives = 2;
+    lives = 1;
     score = 0;
     enemies.push(new element(0, 0, 0, 0, 'gray', 'bullet'));
 
@@ -81,7 +81,6 @@ function makeElements() {
     players.forEach(p => {
         if (p.y > c.height) {
             lives -= 1;
-            console.log(lives);
         }
         p.yVelocity += gravity;
         p.y += p.yVelocity;
@@ -127,9 +126,8 @@ function makeElements() {
         })
 
         io.emit('drawElements', [players, platforms, enemies, bullets]);
-    })
 
-    if (lives < 1 || players.length === 0) {
+        if (lives < 1 || players.length === 0) {
             io.emit('gameOver');
             io.emit('stopGame', false);
             clearInterval(loop);
@@ -137,8 +135,8 @@ function makeElements() {
             bullets = [];
             enemies = [];
             players = [];
-            console.log('Game Over', lives);
         }
+    })
 
     for (let i = 0; i < bullets.length; i++) {
         bullets[i].x += 5;
