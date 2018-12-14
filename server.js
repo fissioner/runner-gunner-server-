@@ -51,7 +51,7 @@ function startGame() {
     //create initial platforms
 
     platforms.push(new element(100, c.height - 50, 100, 50, 'green', 'platform'));
-    for (let i = 1; i < 50; i++) {
+    for (let i = 1; i < 500; i++) {
         let width = random(50, 400),
             height = random(50, 400),
             color = colors[random(0, colors.length)],
