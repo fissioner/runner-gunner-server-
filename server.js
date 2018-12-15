@@ -51,7 +51,7 @@ function startGame() {
     //create initial platforms
 
     platforms.push(new element(100, c.height - 50, 100, 50, 'green', 'platform'));
-    for (let i = 1; i < 100; i++) {
+    for (let i = 1; i < 500; i++) {
         let width = random(50, 400),
             height = random(50, 400),
             color = colors[random(0, colors.length)],
@@ -112,7 +112,7 @@ function makeElements() {
         platforms.forEach(plat => {
             if (p.x > c.width - 200) {
                 plat.x -= 5;
-                p.x -= 5;
+                p.x -= .01;
                 let otherPlayer = players.filter(pl => pl !== p);
                 otherPlayer[0].x -= .01;
             }
