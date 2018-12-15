@@ -112,7 +112,7 @@ function makeElements() {
         platforms.forEach(plat => {
             if (p.x > c.width - 200) {
                 plat.x -= 5;
-                p.x -= .01;
+                p.x -= 5;
                 let otherPlayer = players.filter(pl => pl !== p);
                 otherPlayer[0].x -= .01;
             }
