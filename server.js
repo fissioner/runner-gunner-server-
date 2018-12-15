@@ -43,7 +43,7 @@ function element(x, y, width, height, color, type, name, emoji) {
 }
 
 function startGame() {
-    loop = setInterval(makeElements, 20);
+    loop = setInterval(makeElements, 25);
     lives = 1;
     score = 0;
     enemies.push(new element(0, 0, 0, 0, 'gray', 'bullet'));
@@ -97,7 +97,7 @@ function makeElements() {
         }
         if (p.x > c.width - 200) {
             enemies.forEach(e => {
-                e.x -= .01;
+                e.x -= 5;
             })
         }
         if (p.x <= 0) {
@@ -112,7 +112,7 @@ function makeElements() {
         platforms.forEach(plat => {
             if (p.x > c.width - 200) {
                 plat.x -= 5;
-                p.x -= 10;
+                p.x -= .01;
                 let otherPlayer = players.filter(pl => pl !== p);
                 otherPlayer[0].x -= .01;
             }
