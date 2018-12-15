@@ -43,7 +43,7 @@ function element(x, y, width, height, color, type, name, emoji) {
 }
 
 function startGame() {
-    loop = setInterval(makeElements, 25);
+    loop = setInterval(makeElements, 20);
     lives = 1;
     score = 0;
     enemies.push(new element(0, 0, 0, 0, 'gray', 'bullet'));
