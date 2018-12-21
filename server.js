@@ -43,8 +43,8 @@ function element(x, y, width, height, color, type, name, emoji) {
 }
 
 function startGame() {
-    loop = setInterval(makeElements, 30);
-    lives = 1;
+    loop = setInterval(makeElements, 20);
+    lives = 2;
     score = 0;
     enemies.push(new element(0, 0, 0, 0, 'gray', 'bullet'));
 
@@ -77,6 +77,10 @@ function startGame() {
 
 function makeElements() {
     let floor = c.height + 100;
+
+    if (platforms[0].x + platforms[0].widht < 0) {
+        platforms.shift();
+    }
 
     players.forEach(p => {
         if (p.y > c.height) {
@@ -126,7 +130,7 @@ function makeElements() {
             }
         })
 
-        io.emit('drawElements', [players, platforms, enemies, bullets]);
+        io.emit('drawElements', [players, platforms.slice(0, 10), enemies.slice(0, 10), bullets]);
     })
 
     if (lives < 1 || players.length === 0) {
