@@ -78,12 +78,10 @@ function startGame() {
 function makeElements() {
     let floor = c.height + 100;
 
-    if (platforms[0].x + platforms[0].width < 0) {
+    if (platforms[0].x + platforms[0].widht < 0) {
         platforms.shift();
     }
-    if (enemies[1].x + 40 < 0) {
-        enemies.splice(1, 1);
-    }
+
     players.forEach(p => {
         if (p.y > c.height) {
             lives -= 1;
@@ -131,10 +129,9 @@ function makeElements() {
                 }
             }
         })
+
+        io.emit('drawElements', [players, platforms.slice(0, 10), enemies.slice(0, 10), bullets]);
     })
-
-    io.emit('drawElements', [players, platforms.slice(0, 6), enemies.slice(1, 10), bullets]);
-
 
     if (lives < 1 || players.length === 0) {
             io.emit('gameOver');
@@ -213,12 +210,6 @@ io.on('connection', function (socket) {
             startGame();
             console.log('Game in Progress');
         }
-    });
-    socket.on('startSolo', function () {
-        io.emit('startGame', true);
-    });
-    socket.on('stopSolo', function () {
-        io.emit('stopGame', false);
     });
 });
 
