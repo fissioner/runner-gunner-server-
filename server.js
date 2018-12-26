@@ -222,6 +222,6 @@ io.on('connection', function (socket) {
     });
 });
 
-
+console.log(process.env.DATABASE_URL || 'none');
 const port = process.env.PORT || 5000;
 http.listen(port, () => console.log(`Server listening on port ${port}...`));
