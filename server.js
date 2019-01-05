@@ -200,11 +200,11 @@ function makeElements() {
 
 io.on('connection', function (socket) {
     console.log(`New User Connection, Socket ID: ${socket.id}`);
-    /*sms.messages.create({
+    sms.messages.create({
         to: process.env.TWILIO_TO,
         from: process.env.TWILIO_FROM,
         body: 'A user connected to Runner Gunner'
-    })*/
+    });
     let user = UsernameGenerator.generateUsername("-");
     user = user.split('-');
     user = user[1] + '-' + user[0];
