@@ -260,6 +260,7 @@ io.on('connection', function (socket) {
     socket.on('soloGame', function (userName) {
         soloGame = true;
         socket.emit('joinedGame');
+        players = [];
         players.push(new element(100 + (100 / 2) - (20 / 2), c.height - 50 - 40, 20, 40, 'orange', 'player', userName, emojis[random(0, 2440)]));
         io.emit('startGame', true);
         startGame();
